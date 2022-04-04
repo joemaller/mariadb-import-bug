@@ -1,0 +1,24 @@
+{
+  "name": "mariadb-bug",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Joe Maller <joe@ideasonpurpose.com>",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "fail": "docker compose run --rm fail",
+    "postfail": "docker compose rm -sf db1073",
+    "pass": "docker compose run --rm pass",
+    "postpass": "docker compose rm -sf db1067",
+    "pretest": "clear",
+    "test": "npm run fail",
+    "posttest": "npm run pass",
+    "watch": "chokidar '_db/*.sql' -c 'npm run fail'",
+    "watch:fail": "chokidar '_db/*.sql' --initial -c 'npm run fail'",
+    "watch:pass": "chokidar '_db/*.sql' --initial -c 'npm run pass'"
+  },
+  "dependencies": {
+    "chokidar-cli": "^3.0.0"
+  }
+}
